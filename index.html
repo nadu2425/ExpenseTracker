@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">Personal Expense Tracker</div>
+  </header>
+
+  <main class="container">
+    <section class="summary-grid" aria-label="Financial summary">
+      <article class="summary-card income-card">
+        <p>Total Income</p>
+        <h2 id="totalIncome">LKR 0.00</h2>
+      </article>
+      <article class="summary-card expense-card">
+        <p>Total Expenses</p>
+        <h2 id="totalExpenses">LKR 0.00</h2>
+      </article>
+      <article class="summary-card balance-card">
+        <p>Current Balance</p>
+        <h2 id="currentBalance">LKR 0.00</h2>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <h1>Add Transaction</h1>
+          <p>Record your income and expenses.</p>
+        </div>
+      </div>
+
+      <form id="transactionForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="type">Transaction Type</label>
+            <select id="type" name="type" required>
+              <option value="">Select type</option>
+              <option value="Income">Income</option>
+              <option value="Expense">Expense</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input id="description" name="description" type="text"
+                   placeholder="e.g. Monthly Allowance" required maxlength="100">
+          </div>
+
+          <div class="form-group">
+            <label for="amount">Amount (LKR)</label>
+            <input id="amount" name="amount" type="number" min="0.01" step="0.01"
+                   placeholder="e.g. 25000" required>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+              <option value="">Select category</option>
+              <option>Allowance</option>
+              <option>Salary</option>
+              <option>Scholarship</option>
+              <option>Food</option>
+              <option>Transport</option>
+              <option>Education</option>
+              <option>Accommodation</option>
+              <option>Entertainment</option>
+              <option>Health</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input id="date" name="date" type="date" required>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Add Transaction</button>
+          <button class="btn btn-secondary" type="button" id="clearButton">Clear</button>
+        </div>
+        <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="history-header">
+        <div>
+          <h2>Transaction History</h2>
+          <p>View, filter, search, or delete your transactions.</p>
+        </div>
+        <div class="history-controls">
+          <label class="visually-hidden" for="filter">Filter transactions</label>
+          <select id="filter">
+            <option value="All">All Transactions</option>
+            <option value="Income">Income Only</option>
+            <option value="Expense">Expenses Only</option>
+          </select>
+          <label class="visually-hidden" for="search">Search transactions</label>
+          <input id="search" type="search" placeholder="Search transactions...">
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Category</th>
+              <th class="amount-column">Amount (LKR)</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="transactionTableBody">
+            <tr><td colspan="6" class="empty-state">No transactions yet. Add your first transaction above.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <footer>Personal Expense Tracker · Your data is saved in this browser.</footer>
+  </main>
+</body>
+</html>
